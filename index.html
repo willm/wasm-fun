@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <mata charset="utf-8"></mata>
+  <meta charset="utf-8" />
   <title>Hello wasm</title>
 </head>
 
@@ -12,8 +12,9 @@
     Module.onRuntimeInitialized = () => {
       const newFuncPtr = Module.addFunction(function (num) {
         console.log('wooop');
-        //Module.print('Hello ' + num + ' from JS!');
       }, 'vi');
+      // "vi" here means the function is void
+      // and takes a single integer parameter
       Module._callMeBack(newFuncPtr);
       console.log(Module._add3(10));
     }
