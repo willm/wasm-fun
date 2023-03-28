@@ -9,7 +9,13 @@
 <body>
   <script src="/cmake-build/wasmfun.js"></script>
   <script type="text/javascript">
-
+    Module.onRuntimeInitialized = () => {
+      const newFuncPtr = Module.addFunction(function (num) {
+        console.log('wooop');
+        //Module.print('Hello ' + num + ' from JS!');
+      }, 'vi');
+      Module._callMeBack(newFuncPtr);
+    }
   </script>
 </body>
 
