@@ -1,7 +1,7 @@
 Module.onRuntimeInitialized = () => {
-  var newFuncPtr = Module.addFunction(function(num) {
+  const newFuncPtr = Module.addFunction(function(num) {
     console.log('wooop');
-    Module.print('Hello ' + num + ' from JS!');
+    //Module.print('Hello ' + num + ' from JS!');
   }, 'vi');
   Module._callMeBack(newFuncPtr);
 
