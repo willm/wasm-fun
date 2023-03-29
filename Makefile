@@ -7,3 +7,7 @@ build:
 
 clean:
 	rm -rf cmake-build/*
+
+serve:
+	docker run -v $$(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf \
+		-v $$(pwd):/usr/share/nginx/html --rm -p 8000:80 --name wasm-fun nginx

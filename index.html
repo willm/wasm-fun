@@ -10,13 +10,19 @@
   <script src="/cmake-build/wasmfun.js"></script>
   <script type="text/javascript">
     Module.onRuntimeInitialized = () => {
+      // call a synchronous method
+      console.log(Module._add3(10));
+
+      // call a function with a callback
       const newFuncPtr = Module.addFunction(function (num) {
-        console.log('wooop');
+        console.log('JS function called as c++ callback');
       }, 'vi');
       // "vi" here means the function is void
       // and takes a single integer parameter
       Module._callMeBack(newFuncPtr);
-      console.log(Module._add3(10));
+
+      // start a thread
+      Module._startAThread();
     }
   </script>
 </body>
