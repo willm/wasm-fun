@@ -10,4 +10,7 @@ mod.onRuntimeInitialized = () => {
 
   mod._startAThread();
 
+  const shape = new mod.Shape('square');
+  console.log(shape.getName());
+  shape.delete();
 }

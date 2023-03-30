@@ -1,9 +1,11 @@
 #ifdef __EMSCRIPTEN__
 #include <emscripten/emscripten.h>
+#include <emscripten/bind.h>
 #include <stdio.h>
 #include <stdlib.h>
 #else
 #define EMSCRIPTEN_KEEPALIVE
+#define EMSCRIPTEN_BINDING
 #endif
 #include <thread>
 #include <chrono>
@@ -36,4 +38,22 @@ void startAThread() {
 
     thread.detach();
     std::cout << "Main thread exiting" << std::endl;
+}
+
+class Shape {
+    private:
+        std::string _name;
+    public:
+        Shape(std::string name) {
+            _name = name;
+        }
+        std::string getName() {
+            return _name;
+        }
+};
+// Binding code
+EMSCRIPTEN_BINDINGS(shape_example) {
+    emscripten::class_<Shape>("Shape")
+    .constructor<std::string>()
+    .function("getName", &Shape::getName);
 }
